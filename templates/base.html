@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DMT Law - Case Management{% endblock %}</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/dmt_logo1.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/dmt_logo1.png') }}" alt="DMT Law Office logo">
+                <h2>DMT Law Office</h2>
+            </div>
+            <ul class="sidebar-links">
+                <li><a href="#" aria-label="Go to Dashboard"><i class="bx bxs-dashboard"></i>Dashboard</a></li>
+                <li><a href="#" aria-label="Go to Appointments"><i class="bx bxs-calendar-check"></i>Appointments</a></li>
+                <li><a href="#" aria-label="Go to Calendar"><i class="bx bxs-calendar"></i>Calendar</a></li>
+                <li><a href="#" aria-label="Go to Bills"><i class="bx bx-money-withdraw"></i>Bills</a></li>
+                <li><a href="{{ url_for('index') }}" class="active" aria-label="Go to Case Library"><i class="bx bx-library"></i>Case Library</a></li>
+                <li><a href="#" aria-label="Go to My Clients"><i class="bx bx-user-pin"></i>My Clients</a></li>
+                <li><a href="#" aria-label="Go to Logbook"><i class="bx bxs-book-alt"></i>Logbook</a></li>
+            </ul>
+            <ul class="sidebar-logout">
+                <li><a href="#" aria-label="Logout"><i class="bx bx-log-out"></i>Logout</a></li>
+            </ul>
+        </aside>
+        <div class="main-content">
+            <div class="header">
+                <h1>DMT Law</h1>
+                <p>Good day, Atty. Angel</p>
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

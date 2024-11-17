@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}DMT Law - Case Details{% endblock %}
+
+{% block content %}
+<div class="case-details">
+    {% if case.relevance is not none %}
+    <div class="relevance">
+        Relevance: <span id="relevanceScore">{{ "%.2f"|format(case.relevance * 100) }}</span>%
+    </div>
+    {% endif %}
+    <div class="case-info">
+        <p><strong>Title:</strong> {{ case.title }}</p>
+        <p><strong>Type:</strong> {{ case.type }}</p>
+        <p><strong>Case No:</strong> {{ case.caseNo }}</p>
+        <p><strong>Location:</strong> {{ case.location }}</p>
+        <p><strong>File Type:</strong> {{ case.fileType }}</p>
+    </div>
+    <h2>Case Content</h2>
+    <div class="case-content">
+        {{ case.content }}
+    </div>
+</div>
+<a href="{{ url_for('index') }}" class="back-button">Back to Case List</a>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const relevanceScoreElement = document.getElementById('relevanceScore');
+        if (relevanceScoreElement) {
+            const score = parseFloat(relevanceScoreElement.textContent);
+            let color = '#4caf50'; // Default green color
+            if (score < 50) {
+                color = '#ff9800'; // Orange for low relevance
+            } else if (score < 25) {
+                color = '#f44336'; // Red for very low relevance
+            }
+            relevanceScoreElement.style.color = color;
+        }
+    });
+</script>
+{% endblock %}
